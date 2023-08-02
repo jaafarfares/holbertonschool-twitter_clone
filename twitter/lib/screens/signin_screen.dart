@@ -43,7 +43,7 @@ class _SignInState extends State<SignIn> {
           children: [
             const Text(
               'Sign In',
-              style: TextStyle(fontSize: 30),
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             ),
             Container(
               height: 100,
