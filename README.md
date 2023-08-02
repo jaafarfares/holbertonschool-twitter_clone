@@ -7,8 +7,8 @@
 ![Screenshot 1](1.png)
 ![Screenshot 2](2.png)
 ![Screenshot 3](3.png)
-![Screenshot 4](4.png)
-![Screenshot 5](5.png)
+![Screenshot 4](5.png)
+![Screenshot 5](4.png)
 
 
 ### Made by [Jaafar Fares](https://jaafarfares.github.io/) for [Holberton School](https://www.holbertonschool.com/)
