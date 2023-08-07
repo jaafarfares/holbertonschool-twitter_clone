@@ -12,6 +12,23 @@
 ![Screenshot 5](5.png)
 
 
+# 0x03. Flutter - Twitter Clone Static Part 2
+
+
+## In this part of the Twitter Clone Project, i have  successfully implemented those features :
+
+### Posts UI with Dummy Data: Created a UI displaying posts using dummy data, featuring profile avatars, usernames, post content, and interaction icons, wrapped in a scrollable list for user engagement.
+
+### PostWidget: A customizable Flutter widget displaying a stylized social media post, including user avatar, username, verified badge, post content, and interaction icons, with dynamic data injection, encapsulating a post's visual representation.
+
+
+![Screenshot 5](6.png)
+![Screenshot 5](7.png)
+![Screenshot 5](8.png)
+![Screenshot 5](9.png)
+
+
+
 ### Made by [Jaafar Fares](https://jaafarfares.github.io/) for [Holberton School](https://www.holbertonschool.com/)
 
 

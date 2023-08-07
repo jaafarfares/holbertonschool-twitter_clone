@@ -57,7 +57,7 @@ class _SignInState extends State<SignIn> {
               hint: 'Enter email',
             ),
             CustomEntryField(
-              controller: _emailController,
+              controller: _passwordController,
               hint: 'Enter password',
               isPassword: true,
             ),

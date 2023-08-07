@@ -11,8 +11,6 @@ class _SideBarMenuState extends State<SideBarMenu> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-/*       width: 89,
-      elevation: 7, */
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
@@ -28,7 +26,9 @@ class _SideBarMenuState extends State<SideBarMenu> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    width: 30,
+                    padding: const EdgeInsets.only(top: 8),
+                    width: 50,
+                    height: 50,
                     child: Image.asset(('asstes/logo/logo.png')),
                   ),
                   const SizedBox(height: 10),
