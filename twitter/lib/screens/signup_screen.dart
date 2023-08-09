@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:twitter/widgets/entry_field.dart';
 import 'package:twitter/widgets/flat_button.dart';
+import '../providers/auth_state.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({
@@ -37,6 +39,7 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
+    final Auth auth = Provider.of<Auth>(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -86,12 +89,38 @@ class _SignUpState extends State<SignUp> {
               CustomFlatButton(
                 fontWeight: FontWeight.bold,
                 label: 'Submit',
-                onPressed: () {},
+                onPressed: () async {
+                  try {
+                    final result = await auth.attemptSignUp(
+                        _emailController.text,
+                        _nameController.text,
+                        _passwordController.text,
+                        _confirmController.text);
+
+                    if (result == Errors.none) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Account Created!')));
+                    } else if (result == Errors.weakError) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text('The password provided is too weak.')));
+                    } else if (result == Errors.matchError) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text('Passwords don’t match')));
+                    } else if (result == Errors.existsError) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text(
+                              'An account already exists with that email.')));
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text(
+                              'Failed to create account! Please try later')));
+                    }
+                  } catch (e) {
+                    print(
+                        "************* error in umbit methods !  **************");
+                  }
+                },
               ),
-              /* CustomFlatButton(
-                label: 'Return to Sign in Screen',
-                onPressed: () {},
-              ), */
             ],
           ),
         ),
