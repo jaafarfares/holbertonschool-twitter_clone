@@ -4,7 +4,7 @@
 
 ### Welcome to Twitter Clone project! This Flutter-based app brings the essence of Twitter to life with its feature-rich design. Embrace the seamless sign-in, sign-up, and forgot password screens, ensuring a secure and smooth user experience. Navigate through the home page equipped with an intuitive drawer, reminiscent of the beloved Twitter app. The project incorporates custom text fields and flat buttons, enhancing the overall aesthetic and functionality. With this Twitter Clone, we present a captivating demonstration of Flutter expertise and thoughtful UI design, offering users a taste of the Twitter experience in a brand-new context
 
-<div style="display: flex; justify-content: center;">
+<div style="display: flex; justify-content: space-between;">
   <img src="1.png" alt="Screenshot 1" style="margin-right: 10px;">
   <img src="2.png" alt="Screenshot 2" style="margin-right: 10px;">
   <img src="3.png" alt="Screenshot 3" style="margin-right: 10px;">
