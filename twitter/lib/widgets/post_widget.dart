@@ -10,17 +10,17 @@ class PostWidget extends StatelessWidget {
   String img;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Container(
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            children: [
-              Column(
-                children: [
-                  Row(
+    return Center(
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          children: [
+            Column(
+              children: [
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
                         decoration: BoxDecoration(
@@ -49,48 +49,48 @@ class PostWidget extends StatelessWidget {
                       const Icon(Icons.more_horiz, color: Colors.black),
                     ],
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 35, top: 20, right: 16),
-                    child: Column(
-                      children: [
-                        Text(
-                          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentiumoptio, eaque rerum! Provident similique accusantium nemo autem. Veritatis nihil,',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            Icon(Icons.chat_bubble_outline, color: Colors.grey),
-                            Text('  0',
-                                style: TextStyle(
-                                    fontSize: 18, color: Colors.grey)),
-                            SizedBox(width: 20),
-                            Icon(Icons.repeat, color: Colors.grey),
-                            Text('  0',
-                                style: TextStyle(
-                                    fontSize: 18, color: Colors.grey)),
-                            SizedBox(width: 20),
-                            Icon(
-                              Icons.favorite,
-                              color: Colors.red,
-                            ),
-                            Text('  2',
-                                style: TextStyle(
-                                    fontSize: 18, color: Colors.grey)),
-                            SizedBox(width: 20),
-                            Spacer(),
-                            Icon(Icons.share, color: Colors.grey),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ],
-          ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 35, top: 20, right: 16),
+                  child: Column(
+                    children: [
+                      Text(
+                        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentiumoptio, eaque rerum! Provident similique accusantium nemo autem. Veritatis nihil,',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Icon(Icons.chat_bubble_outline, color: Colors.grey),
+                          Text('  0',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.grey)),
+                          SizedBox(width: 20),
+                          Icon(Icons.repeat, color: Colors.grey),
+                          Text('  0',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.grey)),
+                          SizedBox(width: 20),
+                          Icon(
+                            Icons.favorite,
+                            color: Colors.red,
+                          ),
+                          Text('  2',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.grey)),
+                          SizedBox(width: 20),
+                          Spacer(),
+                          Icon(Icons.share, color: Colors.grey),
+                        ],
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ],
         ),
       ),
     );

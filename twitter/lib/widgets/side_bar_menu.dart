@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:twitter/models/user.dart';
 import 'package:twitter/providers/auth_state.dart';
+import 'package:twitter/screens/profile_screen.dart';
 
 class SideBarMenu extends StatefulWidget {
   const SideBarMenu({super.key});
@@ -65,7 +66,14 @@ class _SideBarMenuState extends State<SideBarMenu> {
           ListTile(
             leading: const Icon(Icons.account_circle),
             title: const Text('Profile'),
-            onTap: () => {},
+            onTap: () => {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ProfileScreen(
+                        )),
+              ),
+            },
           ),
           ListTile(
             leading: const Icon(Icons.list),

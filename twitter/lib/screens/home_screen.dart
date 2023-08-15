@@ -4,10 +4,12 @@ import 'package:provider/provider.dart';
 import 'package:twitter/providers/app_state.dart';
 import 'package:twitter/providers/auth_state.dart';
 import 'package:twitter/screens/chats_screen.dart';
+import 'package:twitter/screens/edit_post_screen.dart';
 import 'package:twitter/screens/notifications_screen.dart';
 import 'package:twitter/screens/search_screen.dart';
 import 'package:twitter/screens/signin_screen.dart';
 import 'package:twitter/widgets/bottom_bar_menu.dart';
+import 'package:twitter/widgets/post_widget.dart';
 import 'package:twitter/widgets/side_bar_menu.dart';
 import 'package:twitter/widgets/users_search_results_widget.dart';
 
@@ -54,8 +56,36 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       drawer: SideBarMenu(),
       bottomNavigationBar: BarMenu(),
-      body: Center(
-        child: Text("data"),
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  PostWidget(),
+                  PostWidget(),
+                  // Add more PostWidget instances as needed
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(16.0), // Adjust the padding as needed
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: FloatingActionButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => EditPostScreen()),
+                  );
+                },
+                backgroundColor: Colors.blue,
+                child: Icon(Icons.add, color: Colors.white),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
