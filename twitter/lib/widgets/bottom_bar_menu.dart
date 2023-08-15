@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/* import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:twitter/providers/app_state.dart';
 import 'package:twitter/screens/chats_screen.dart';
@@ -21,6 +21,7 @@ class _BarMenuState extends State<BarMenu> {
     final sharedState = Provider.of<SharedState>(context);
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
         backgroundColor: Colors.white,
@@ -61,6 +62,72 @@ class _BarMenuState extends State<BarMenu> {
         const NotificationsScreen(),
         const ChatsScreen(),
       ][currentPageIndex],
+    );
+  }
+}
+ */
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:twitter/providers/app_state.dart';
+import 'package:twitter/screens/chats_screen.dart';
+import 'package:twitter/screens/home_screen.dart';
+import 'package:twitter/screens/notifications_screen.dart';
+import 'package:twitter/screens/search_screen.dart';
+
+class BarMenu extends StatefulWidget {
+  final List<Widget> screens;
+  final int currentPageIndex; // Add this line
+
+  const BarMenu({
+    Key? key,
+    required this.screens,
+    required this.currentPageIndex, // Add this line
+  }) : super(key: key);
+
+  @override
+  State<BarMenu> createState() => _BarMenuState();
+}
+
+class _BarMenuState extends State<BarMenu> {
+  @override
+  Widget build(BuildContext context) {
+    final sharedState = Provider.of<SharedState>(context);
+    return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
+        backgroundColor: Colors.white,
+        currentIndex: widget.currentPageIndex, 
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        unselectedFontSize: 0,
+        selectedFontSize: 0,
+        elevation: 0,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.message),
+            label: '',
+          ),
+        ],
+        onTap: (value) {
+          sharedState.setpageIndex = value;
+        },
+      ),
+      body:
+          widget.screens[widget.currentPageIndex],
     );
   }
 }

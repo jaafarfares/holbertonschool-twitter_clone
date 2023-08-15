@@ -10,7 +10,7 @@ class ChatsScreen extends StatefulWidget {
 class _ChatsScreenState extends State<ChatsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    /* Scaffold(
       appBar: AppBar(
         titleSpacing: 9,
         //primary: false,
@@ -44,6 +44,9 @@ class _ChatsScreenState extends State<ChatsScreen> {
         'No Chats Yet',
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
       )),
+    ); */
+    return Center(
+      child: Text('Chats Screen'),
     );
   }
 }

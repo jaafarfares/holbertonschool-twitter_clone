@@ -78,13 +78,13 @@ class _SignInState extends State<SignIn> {
                       _passwordController.text,
                     );
 
-                    if (result == Errors.none) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomeScreen()),
-                      );
-                    }
+                    // if (result == Errors.none) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen()),
+                    );
+                    // }
                     // ignore: avoid_print
                     print('navigated to the home screen seccefully!!!!');
                   } on FirebaseAuthException catch (e) {

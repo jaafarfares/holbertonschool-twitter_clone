@@ -7,6 +7,7 @@ import 'package:twitter/screens/signin_screen.dart';
 import 'package:twitter/widgets/bottom_bar_menu.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:twitter/widgets/side_bar_menu.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,18 +21,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          ChangeNotifierProvider<Auth>(create: (_) => Auth()),
-          ChangeNotifierProvider<SharedState>(create: (_) => SharedState()),
-        ],
-        child: const MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: SafeArea(
-            child: Scaffold(
-              body: SignIn(),
-              bottomNavigationBar: BarMenu(),
-            ),
-          ),
-        ));
+      providers: [
+        ChangeNotifierProvider<Auth>(create: (_) => Auth()),
+        ChangeNotifierProvider<SharedState>(create: (_) => SharedState()),
+      ],
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: SignIn(),
+      ),
+    );
   }
 }

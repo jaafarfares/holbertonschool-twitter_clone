@@ -10,7 +10,7 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return /* Center(child: Text('search'));  */ SafeArea(
       top: false,
       child: Scaffold(
         appBar: AppBar(
@@ -53,9 +53,11 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           ],
         ),
+        
         body: UsersSearchResultsWidget(),
         // bottomNavigationBar: BarMenu(),
+        
       ),
-    );
+    ); 
   }
 }

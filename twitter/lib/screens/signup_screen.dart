@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:twitter/screens/home_screen.dart';
 import 'package:twitter/widgets/entry_field.dart';
 import 'package:twitter/widgets/flat_button.dart';
 import '../providers/auth_state.dart';
@@ -69,7 +70,7 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
               CustomEntryField(
-                controller: _emailController,
+                controller: _nameController,
                 hint: 'Enter name',
               ),
               CustomEntryField(
@@ -77,12 +78,12 @@ class _SignUpState extends State<SignUp> {
                 hint: 'Enter email',
               ),
               CustomEntryField(
-                controller: _emailController,
+                controller: _passwordController,
                 hint: 'Enter password',
                 isPassword: true,
               ),
               CustomEntryField(
-                controller: _emailController,
+                controller: _confirmController,
                 hint: 'Confirm password',
                 isPassword: true,
               ),
@@ -90,34 +91,56 @@ class _SignUpState extends State<SignUp> {
                 fontWeight: FontWeight.bold,
                 label: 'Submit',
                 onPressed: () async {
-                  try {
-                    final result = await auth.attemptSignUp(
+                  if (_formKey.currentState!.validate()) {
+                    try {
+                      final result = await auth.attemptSignUp(
                         _emailController.text,
                         _nameController.text,
                         _passwordController.text,
-                        _confirmController.text);
+                        _confirmController.text,
+                      );
 
-                    if (result == Errors.none) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                      );
                       ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Account Created!')));
-                    } else if (result == Errors.weakError) {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text('The password provided is too weak.')));
-                    } else if (result == Errors.matchError) {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text('Passwords don’t match')));
-                    } else if (result == Errors.existsError) {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text(
-                              'An account already exists with that email.')));
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text(
-                              'Failed to create account! Please try later')));
+                        SnackBar(
+                          content: result == Errors.none
+                              ? const Text('Account Created!')
+                              : result == Errors.weakError
+                                  ? const Text(
+                                      'The password provided is too weak.')
+                                  : result == Errors.matchError
+                                      ? const Text('Passwords don’t match')
+                                      : result == Errors.existsError
+                                          ? const Text(
+                                              'An account already exists with that email.')
+                                          : const Text(
+                                              'Failed to create account! Please try later'),
+                          duration: const Duration(seconds: 3),
+                          backgroundColor: Colors.red,
+                          behavior: SnackBarBehavior.floating,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          elevation: 0,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 12, horizontal: 16),
+                          width: 300,
+                          action: SnackBarAction(
+                            label: 'Dismiss',
+                            onPressed: () {
+                              ScaffoldMessenger.of(context)
+                                  .hideCurrentSnackBar();
+                            },
+                          ),
+                        ),
+                      );
+                    } catch (e) {
+                      print(
+                          "************* error in signup methods! **************");
                     }
-                  } catch (e) {
-                    print(
-                        "************* error in umbit methods !  **************");
                   }
                 },
               ),

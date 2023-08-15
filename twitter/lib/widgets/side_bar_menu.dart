@@ -48,7 +48,7 @@ class _SideBarMenuState extends State<SideBarMenu> {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return CircularProgressIndicator();
                       } else if (snapshot.hasError) {
-                        return Text('Error: ${snapshot.error}');
+                        return Text('Error:');
                       } else if (snapshot.hasData) {
                         final currentUser = snapshot.data!;
                         return Text(
