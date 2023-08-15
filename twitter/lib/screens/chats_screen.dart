@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:twitter/widgets/bottom_bar_menu.dart';
 
 class ChatsScreen extends StatefulWidget {
   const ChatsScreen({super.key});
@@ -10,7 +11,7 @@ class ChatsScreen extends StatefulWidget {
 class _ChatsScreenState extends State<ChatsScreen> {
   @override
   Widget build(BuildContext context) {
-    /* Scaffold(
+    return Scaffold(
       appBar: AppBar(
         titleSpacing: 9,
         //primary: false,
@@ -44,9 +45,10 @@ class _ChatsScreenState extends State<ChatsScreen> {
         'No Chats Yet',
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
       )),
-    ); */
-    return Center(
-      child: Text('Chats Screen'),
+      bottomNavigationBar: BarMenu(),
     );
+    /*    return Center(
+      child: Text('Chats Screen'),
+    ); */
   }
 }

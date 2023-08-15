@@ -52,14 +52,10 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: BarMenu(
-        screens: [
-          HomeScreen(),
-          SearchScreen(),
-          NotificationsScreen(),
-          ChatsScreen(),
-        ],
-        currentPageIndex: currentPageIndex,
+      drawer: SideBarMenu(),
+      bottomNavigationBar: BarMenu(),
+      body: Center(
+        child: Text("data"),
       ),
     );
   }

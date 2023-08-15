@@ -75,14 +75,7 @@ import 'package:twitter/screens/notifications_screen.dart';
 import 'package:twitter/screens/search_screen.dart';
 
 class BarMenu extends StatefulWidget {
-  final List<Widget> screens;
-  final int currentPageIndex; // Add this line
-
-  const BarMenu({
-    Key? key,
-    required this.screens,
-    required this.currentPageIndex, // Add this line
-  }) : super(key: key);
+  const BarMenu({Key? key}) : super(key: key);
 
   @override
   State<BarMenu> createState() => _BarMenuState();
@@ -92,42 +85,49 @@ class _BarMenuState extends State<BarMenu> {
   @override
   Widget build(BuildContext context) {
     final sharedState = Provider.of<SharedState>(context);
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
-        backgroundColor: Colors.white,
-        currentIndex: widget.currentPageIndex, 
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        unselectedFontSize: 0,
-        selectedFontSize: 0,
-        elevation: 0,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.message),
-            label: '',
-          ),
-        ],
-        onTap: (value) {
-          sharedState.setpageIndex = value;
-        },
-      ),
-      body:
-          widget.screens[widget.currentPageIndex],
+    final screens = [
+      HomeScreen(),
+      SearchScreen(),
+      NotificationsScreen(),
+      ChatsScreen(),
+    ];
+
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: Colors.blue,
+      unselectedItemColor: Colors.grey,
+      backgroundColor: Colors.white,
+      currentIndex: sharedState.pageNum,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      unselectedFontSize: 0,
+      selectedFontSize: 0,
+      elevation: 0,
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.search),
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.notifications),
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.message),
+          label: '',
+        ),
+      ],
+      onTap: (value) {
+        sharedState.setpageIndex = value;
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => screens[value]),
+        );
+      },
     );
   }
 }

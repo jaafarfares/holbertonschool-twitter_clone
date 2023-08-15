@@ -42,12 +42,13 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         ],
       ),
       body: Center(
-        child:
-            PostWidget(), /* Text(
+        child: PostWidget(),
+        /* Text(
           'No Notifications Yet',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
         ), */
       ),
+      bottomNavigationBar: BarMenu(),
     );
 /*     return Center(
       child: Text('Notifications Screen'),

@@ -100,10 +100,6 @@ class _SignUpState extends State<SignUp> {
                         _confirmController.text,
                       );
 
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()),
-                      );
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: result == Errors.none
@@ -142,6 +138,10 @@ class _SignUpState extends State<SignUp> {
                           "************* error in signup methods! **************");
                     }
                   }
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                  );
                 },
               ),
             ],

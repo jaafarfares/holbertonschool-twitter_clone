@@ -78,13 +78,6 @@ class _SignInState extends State<SignIn> {
                       _passwordController.text,
                     );
 
-                    // if (result == Errors.none) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const HomeScreen()),
-                    );
-                    // }
                     // ignore: avoid_print
                     print('navigated to the home screen seccefully!!!!');
                   } on FirebaseAuthException catch (e) {
@@ -100,6 +93,10 @@ class _SignInState extends State<SignIn> {
                     // ignore: avoid_print
                     print('unknown error  from login $e');
                   }
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomeScreen()),
+                  );
                 },
               ),
               const SizedBox(height: 20),

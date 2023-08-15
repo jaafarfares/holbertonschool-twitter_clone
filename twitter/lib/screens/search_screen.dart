@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:twitter/widgets/bottom_bar_menu.dart';
 import 'package:twitter/widgets/users_search_results_widget.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -53,11 +54,9 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           ],
         ),
-        
         body: UsersSearchResultsWidget(),
-        // bottomNavigationBar: BarMenu(),
-        
+        bottomNavigationBar: BarMenu(),
       ),
-    ); 
+    );
   }
 }
