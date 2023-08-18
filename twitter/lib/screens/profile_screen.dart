@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:twitter/models/user.dart';
+import 'package:twitter/providers/auth_state.dart';
 import 'package:twitter/screens/edit_profile_screen.dart';
 import 'package:twitter/widgets/bottom_bar_menu.dart';
 import 'package:twitter/widgets/post_widget.dart';
@@ -12,10 +13,25 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final TextEditingController _textEditingController = TextEditingController();
+  final auth = Auth();
+  String? currentUserId;
+
   @override
   void initState() {
     super.initState();
-    User().getUserByID(widget.userID);
+    _loadCurrentUser();
+  }
+
+  Future<void> _loadCurrentUser() async {
+    try {
+      final userModel = await auth.getCurrentUserModel();
+      setState(() {
+        currentUserId = userModel.userID;
+      });
+    } catch (error) {
+      print('Error getting current user: $error');
+    }
   }
 
   @override

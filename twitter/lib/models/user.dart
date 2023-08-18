@@ -9,13 +9,13 @@ class User {
   String? userID = Uuid().v4();
   final String email;
   final String userName;
-  final String displayName;
+  late final String displayName;
   final String imageUrl;
   final int following;
   final int followers;
   final List<String> followersList;
   final List<String> followingList;
-  final String bio;
+  late final String bio;
   final String coverImgUrl;
 
   User({
@@ -63,14 +63,14 @@ class User {
     return data;
   }
 
-  Future<User> getUserByID(String userID) async {
+  static Future<User> getCurrentUser() async {
     final currentUser = FirebaseAuth.instance.currentUser;
 
-    if (currentUser != null && currentUser.uid == userID) {
-      final user = User(
+    if (currentUser != null) {
+      return User(
         userID: currentUser.uid,
+        // Populate other user properties here if needed
       );
-      return user;
     }
 
     return User();

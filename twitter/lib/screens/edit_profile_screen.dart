@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:twitter/providers/auth_state.dart';
+import 'package:twitter/widgets/flat_button.dart';
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
@@ -8,6 +10,35 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _bioController = TextEditingController();
+  final auth = Auth();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  void _loadUserData() async {
+    final userModel = await auth.getCurrentUserModel();
+    setState(() {
+      _nameController.text = userModel.displayName ?? '';
+      _bioController.text = userModel.bio ?? '';
+    });
+  }
+
+  Future<void> _updateUserProfile() async {
+    final String newName = _nameController.text;
+    final String newBio = _bioController.text;
+
+    try {
+      await auth.updateUserProfile(newName, newBio, context);
+    } catch (error) {
+      print('Error updating user profile: $error');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,14 +61,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 child: Container(
                   padding: EdgeInsets.only(left: 30.0, top: 30),
                   // color: Colors.white,
-                  child: const Align(
+                  child: Align(
                     alignment: Alignment.centerLeft,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         TextField(
-                          decoration: InputDecoration(
+                          controller: _nameController,
+                          decoration: const InputDecoration(
                             labelText: 'Name',
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.blue),
@@ -47,12 +79,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ),
                           ),
                         ),
-
                         const SizedBox(height: 20),
-
-// Bio TextField
                         TextField(
-                          decoration: InputDecoration(
+                          controller: _bioController,
+                          decoration: const InputDecoration(
                             labelText: 'Bio',
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.blue),
@@ -60,6 +90,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.grey),
                             ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: CustomFlatButton(
+                            fontWeight: FontWeight.bold,
+                            label: 'Submit',
+                            onPressed: _updateUserProfile,
                           ),
                         ),
                       ],

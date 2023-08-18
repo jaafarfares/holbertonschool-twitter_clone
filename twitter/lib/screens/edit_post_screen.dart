@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:twitter/models/post.dart';
-import '../models/post.dart';
+import 'package:twitter/models/user.dart';
 import '../providers/auth_state.dart';
 
 class EditPostScreen extends StatelessWidget {
@@ -9,23 +7,18 @@ class EditPostScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final auth = Auth(); // Create an instance of the Auth class
-    String? currentUserId;
+    final TextEditingController _textEditingController =
+        TextEditingController();
 
-    // Get the current user's ID using getCurrentUserModel()
-    auth.getCurrentUserModel().then((userModel) {
-      currentUserId = userModel.userID;
-    }).catchError((error) {
-      // Handle the error if needed
-      print('Error getting current user: $error');
-    });
+    final auth = Auth();
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.close,
             color: Colors.black,
             size: 30,
@@ -39,15 +32,13 @@ class EditPostScreen extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: ElevatedButton(
               onPressed: () async {
-                if (currentUserId != null) {
-                  Post newPost = Post(
-                    text: 'This calls for celebrating!\nCongratulations!',
-                    userID: currentUserId,
-                  );
-
-                  await FirebaseFirestore.instance
-                      .collection('posts')
-                      .add(newPost.toJson());
+                final currentUser = await User.getCurrentUser();
+                if (currentUser.userID != null) {
+                  String postText = _textEditingController.text;
+                  if (postText.isNotEmpty) {
+                    await auth.addPost(context, currentUser.userID!, postText);
+                    _textEditingController.clear();
+                  }
                 }
               },
               style: ElevatedButton.styleFrom(
@@ -56,10 +47,12 @@ class EditPostScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20.0),
                 ),
               ),
-              child: Text('Tweet',
-                  style: TextStyle(color: Colors.white, fontSize: 20)),
+              child: const Text(
+                'Tweet',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
             ),
-          )
+          ),
         ],
       ),
       body: Column(
@@ -87,9 +80,10 @@ class EditPostScreen extends StatelessWidget {
               SizedBox(width: 16.0),
               Expanded(
                 child: TextField(
+                  controller: _textEditingController,
                   maxLines: 2,
-                  decoration: InputDecoration(
-                    hintText: 'This calls for celebrating!\nCongratulations!',
+                  decoration: const InputDecoration(
+                    hintText: 'click here to add your Post!\n...',
                     border: InputBorder.none,
                   ),
                 ),

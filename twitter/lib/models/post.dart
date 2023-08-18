@@ -1,10 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Post {
   final String? text;
   final String? userID;
   final String? likeCount;
   final String? likeList;
+  final Timestamp timestamp;
 
-  Post({this.text, this.userID, this.likeCount, this.likeList});
+  Post({
+    this.text,
+    this.userID,
+    this.likeCount,
+    this.likeList,
+    required this.timestamp,
+  });
 
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
@@ -12,6 +21,7 @@ class Post {
       userID: json['userID'],
       likeCount: json['likeCount'],
       likeList: json['likeList'],
+      timestamp: json['timestamp'],
     );
   }
 
@@ -21,6 +31,7 @@ class Post {
       'userID': userID,
       'likeCount': likeCount,
       'likeList': likeList,
+      'timestamp': FieldValue.serverTimestamp(),
     };
   }
 }

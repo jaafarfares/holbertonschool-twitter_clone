@@ -4,17 +4,20 @@ class CustomEntryField extends StatelessWidget {
   final TextEditingController controller;
   final bool isPassword;
   final String hint;
+  final keyboardType;
 
-  const CustomEntryField({
-    required this.controller,
-    this.isPassword = false,
-    this.hint = "",
-  });
+  const CustomEntryField(
+      {required this.controller,
+      this.isPassword = false,
+      this.hint = "",
+      this.keyboardType = TextInputType.emailAddress});
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 15),
       child: TextField(
+        keyboardType: keyboardType,
+
         //textAlign: TextAlign.center,
         controller: controller,
         obscureText: isPassword,
