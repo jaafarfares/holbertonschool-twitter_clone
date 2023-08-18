@@ -60,12 +60,31 @@
 
 
 
-i will add the description later stay tunned! 
+#### In this phase of the Twitter Clone project, user profiles were introduced, enhancing the overall user experience and interaction. The implementation of user profiles involved several crucial tasks and features:
+
+### Profile Screen
+##### A new screen, ProfileScreen, was created to display user profiles. Utilizing the getUserByID method, the screen fetched user data based on the provided userID. The screen's design included elements such as the user's bio, cover image, and interaction buttons.
+
+### Edit Profile
+##### The EditProfileScreen was introduced, allowing users to edit their profiles. After modifying profile properties, the "save" button triggered updates to the user's corresponding properties. This feature empowered users to personalize their profiles according to their preferences.
+
+### Home Screen Enhancement
+##### The home_screen.dart was enhanced with a floating action button featuring a plus icon, enabling users to navigate to the EditPostScreen for creating new posts.
+
+### Create Post
+##### A new screen, EditPostScreen, was developed, enabling users to compose and publish new posts. The screen incorporated a text field for post content, the current user's avatar, and a "tweet" button to publish the post.
+
+### Post Model
+##### The Post model was introduced, encompassing attributes such as text, userID, likeCount, and likeList. The model formed the basis for creating and managing individual posts.
+
+### Post Widget Enhancement
+###### The PostWidget was enhanced to display post content dynamically using the Post model. Interaction elements, such as avatars and display names, were made clickable, allowing users to navigate to profile screens.
+
+##### These features collectively enriched the user's engagement with the app, enabling them to explore and interact with user profiles, create posts, and personalize their own profiles, thereby replicating key aspects of the Twitter experience.
 
 
 <div style="display: flex; justify-content: space-between;">
   <img src="10.png" alt="Screenshot 10" width="200"/>
-
   <img src="11.png" alt="Screenshot 11" width="200"/>
   <img src="12.png" alt="Screenshot 12" width="200"/>
   <img src="13.png" alt="Screenshot 13" width="200"/>
